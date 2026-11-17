@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PORTFOLIO — Ye Huiru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=VT323&display=swap" rel="stylesheet" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:none}
+button{cursor:pointer;font-family:inherit}
+::selection{background:#cfdfd2;color:#3f4a44}
+.scene{position:fixed;inset:0;display:none;overflow:hidden}
+.scene.on{display:block;animation:fade .7s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.vine{font-family:'Great Vibes',cursive;font-weight:400}
+.tiny{font-family:VT323,monospace;letter-spacing:.16em}
+
+/* ===== 封面：直接用 cover-clean.jpg ===== */
+#cover{background:#262838;overflow:auto}
+#cover .bg{position:absolute;inset:0;background:url('./assets/cover-clean.jpg') center center/cover no-repeat;filter:contrast(1.02) saturate(.92)}
+#cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,30,48,.34),rgba(30,30,48,.08) 42%,rgba(24,24,40,.5))}
+#cover #pc{position:absolute;inset:0;pointer-events:none;z-index:1}
+#cover .ctop{position:absolute;top:4%;left:5%;font-family:VT323,monospace;font-size:15px;letter-spacing:.18em;color:rgba(244,240,238,.86)}
+#cover .cskip{position:absolute;top:4%;right:5%;font-family:VT323,monospace;font-size:15px;letter-spacing:.18em;color:rgba(244,240,238,.8)}
+#cover .cmid{position:absolute;left:0;right:0;top:34%;transform:translateY(-50%);text-align:center}
+#cover .cmid .pre{font-family:VT323,monospace;font-size:15px;letter-spacing:.3em;color:rgba(244,240,238,.82)}
+#cover .cmid .big{font-size:clamp(6rem,19vw,17rem);line-height:.86;color:#f6f2ee;text-shadow:0 2px 0 rgba(60,58,80,.5),0 0 2px rgba(255,255,255,.9),0 0 18px rgba(255,255,255,.5),0 0 56px rgba(205,215,255,.32)}
+#cover .cmid .post{font-family:VT323,monospace;font-size:14px;letter-spacing:.3em;color:rgba(244,240,238,.8);margin-top:1vh}
+#cover .csign{position:absolute;bottom:20%;left:5%;font-family:VT323,monospace;font-size:14px;letter-spacing:.14em;color:rgba(244,240,238,.85)}
+#cover .cmail{position:absolute;bottom:20%;right:5%;font-family:VT323,monospace;font-size:14px;letter-spacing:.14em;color:rgba(244,240,238,.8)}
+#cover .nav{position:absolute;left:0;right:0;bottom:6%;display:flex;gap:clamp(40px,9vw,130px);justify-content:center;align-items:center;flex-wrap:wrap}
+#cover .nav a{font-family:'Great Vibes',cursive;font-size:clamp(2.6rem,6vw,4.8rem);color:#f7f3ef;text-decoration:none;text-shadow:0 2px 0 rgba(50,48,68,.5),0 0 20px rgba(255,255,255,.5),0 0 50px rgba(200,215,255,.3);transition:transform .4s,text-shadow .4s}
+#cover .nav a:hover{transform:translateY(-8px);text-shadow:0 0 8px #fff,0 0 32px rgba(255,255,255,.9),0 0 72px rgba(200,210,255,.55)}
+#cover .nav .sep{font-family:VT323,monospace;font-size:18px;color:rgba(255,255,255,.5)}
+
+/* ===== 作品：直接用 works-clean.jpg ===== */
+#works{background:#cdd8cd}
+#works .bg{position:absolute;inset:0;background:url('./assets/works-clean.jpg') center center/cover no-repeat;filter:contrast(1.02) saturate(.9) brightness(.98)}
+#works .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(238,234,224,.5),rgba(238,234,224,.3) 45%,rgba(238,234,224,.6))}
+#works .inner{position:relative;height:100%;display:flex;flex-direction:column}
+.wtop{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;font-family:VT323,monospace;font-size:15px;letter-spacing:.14em;color:#5a6a5f}
+.back{background:rgba(255,255,255,.55);border:1px solid #9fb4a5;color:#486052;padding:7px 15px;font-family:VT323,monospace;font-size:14px;letter-spacing:.1em}
+.back:hover{background:#5f7a6e;color:#fff}
+.wlayout{flex:1;display:grid;grid-template-columns:minmax(230px,28%) 1fr;overflow:hidden}
+.wleft{display:flex;flex-direction:column;justify-content:center;padding:4vh 2.5vw;background:rgba(255,255,255,.26);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border-right:1px solid rgba(255,255,255,.55)}
+.wleft .title{font-size:clamp(2.6rem,5vw,4.4rem);color:#5f7a6e;line-height:.9}
+.wleft .hint{font-family:VT323,monospace;font-size:14px;letter-spacing:.16em;color:#7d8f84;margin:14px 0 10px}
+.wcats{display:flex;flex-direction:column;gap:3px;overflow:auto}
+.wcats button{background:none;border:0;text-align:left;color:#4c5f54;font-family:'Great Vibes',cursive;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.15;padding:2px 0;transition:transform .35s,color .35s,text-shadow .35s}
+.wcats button:hover,.wcats button.on{transform:translateX(12px);color:#6f917d;text-shadow:0 0 6px rgba(255,255,255,.9),0 0 22px rgba(140,180,150,.45)}
+.wright{overflow:auto;padding:4vh 3.5vw 12vh}
+.wright .stack{display:flex;flex-direction:column;gap:7vh}
+.wright .card{cursor:pointer;background:#f6f4ee;border:5px solid rgba(255,255,255,.92);box-shadow:0 16px 44px rgba(70,90,75,.18);transition:transform .4s;position:relative}
+.wright .card:hover{transform:translateY(-7px) rotate(-.5deg)}
+.wright .card img{width:100%;height:auto;max-height:none;display:block;object-fit:contain}
+.wright .card .cap{padding:12px 16px;font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:#4b5a50}
+.wright .card .vbadge{position:absolute;left:10px;top:10px;display:flex;align-items:center;gap:5px;background:rgba(26,32,28,.82);color:#f4f1e7;padding:6px 10px;font-family:VT323,monospace;font-size:14px;letter-spacing:.08em;pointer-events:none}
+.wright .card .vbadge i{width:0;height:0;border-left:9px solid #f4f1e7;border-top:5px solid transparent;border-bottom:5px solid transparent;display:block}
+.wright .placeholder{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#6d7f72;line-height:1.8}
+.wdetail{position:absolute;inset:0;background:rgba(233,238,230,.98);display:none;padding:3vh 4vw 10vh;overflow:auto;z-index:20;color:#3f4a44}
+.wdetail.on{display:block;animation:fade .5s ease both}
+.wdetail .dtop{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(233,238,230,.96);padding-bottom:12px;z-index:2}
+.wdetail .dmedia{display:flex;align-items:center;justify-content:center;margin:3vh 0}
+.wdetail img,.wdetail video{width:100%;max-width:100%;object-fit:contain;border:6px solid #fff;box-shadow:0 18px 50px rgba(70,90,75,.2)}
+.wdetail .meta{font-family:VT323,monospace;font-size:16px;letter-spacing:.14em;color:#7d8f84;margin-top:12px}
+.wdetail h3{font-family:'Great Vibes',cursive;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:400;color:#5f7a6e;margin:4px 0}
+.wdetail p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.8;max-width:760px;color:#53605a}
+.wdetail .nav{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.wdetail .nav button,.wdetail .nav a{border:1px solid #9fb4a5;background:rgba(255,255,255,.5);color:#486052;padding:9px 18px;font-family:VT323,monospace;font-size:15px;text-decoration:none}
+
+/* ===== 个人介绍：硫酸纸信封拆开 → 卡片掉落可拖拽 ===== */
+#about{background:linear-gradient(135deg,#d6d0c2,#c7cebd 45%,#b9bdae);color:#3c4638;overflow:hidden}
+#about .topbar{position:absolute;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 30px;font-family:VT323,monospace;font-size:15px;letter-spacing:.14em;color:#6f8276}
+#about .stage{position:absolute;inset:0;overflow:hidden}
+#about .lace{position:absolute;width:300px;height:300px;opacity:.5;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 27%,rgba(255,255,255,.95) 28% 30%,transparent 31%),radial-gradient(circle at 50% 50%,transparent 43%,rgba(255,255,255,.85) 44% 46%,transparent 47%);border-radius:50%}
+/* 信封 */
+.envelope{position:absolute;left:50%;top:50%;width:min(620px,80vw);height:min(400px,52vh);transform:translate(-50%,-50%);transition:transform .8s,opacity .6s;cursor:pointer;z-index:30}
+.envelope .envbody{position:absolute;inset:0;background:rgba(240,236,222,.46);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.5);box-shadow:0 20px 60px rgba(50,60,40,.22),inset 0 0 60px rgba(255,255,255,.3)}
+.envelope .envflap{position:absolute;left:0;right:0;top:0;height:56%;background:linear-gradient(180deg,rgba(238,232,216,.68),rgba(238,232,216,.34));clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .8s;z-index:2}
+.envelope .envtitle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:3;pointer-events:none}
+.envelope .envtitle .t{font-family:'Great Vibes',cursive;font-size:clamp(3rem,8vw,6rem);color:#4e5d49;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.envelope .envtitle .s{font-family:VT323,monospace;font-size:14px;letter-spacing:.2em;color:#6a725f}
+.envelope .hint{position:absolute;bottom:-38px;left:0;right:0;text-align:center;font-family:VT323,monospace;font-size:14px;letter-spacing:.18em;color:#6a725f}
+.stage.open .envelope{transform:translate(-50%,-50%) scale(.8) rotate(-6deg);opacity:0;pointer-events:none}
+.stage.open .envelope .envflap{transform:rotateX(180deg)}
+/* 掉落卡片：用 left/top 定位，可自由拖到任意位置 */
+.drag{position:absolute;cursor:grab;user-select:none;touch-action:none;z-index:10;transform:rotate(var(--r,0deg));transition:box-shadow .18s,filter .18s}
+.drag:hover{filter:brightness(1.03)}
+.drag.dragging{cursor:grabbing;box-shadow:0 34px 76px rgba(40,52,32,.4)!important;transition:none}
+.stage .drag{opacity:0;pointer-events:none}
+.stage.open .drag{opacity:1;pointer-events:auto;animation:drop .8s cubic-bezier(.2,.85,.3,1.1) both;animation-delay:var(--d,0s)}
+@keyframes drop{from{opacity:0;transform:translateY(-55vh) rotate(var(--r,0deg)) scale(.62)}to{opacity:1;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}}
+/* 卡片样式：米灰纸张 + 深橄榄绿 */
+.pcard{background:rgba(240,236,223,.96);border:1px solid rgba(255,255,255,.55);box-shadow:3px 12px 34px rgba(48,60,38,.26)}
+.pcard h4{font-family:'Great Vibes',cursive;color:#4e5d49;font-weight:400}
+.lacecard{padding:26px;width:min(360px,46vw);background:rgba(242,238,226,.96);border:1px solid rgba(255,255,255,.55);box-shadow:3px 12px 34px rgba(48,60,38,.26)}
+.lacecard::before{content:"";position:absolute;inset:-14px;border-radius:50%;opacity:.5;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 62%,rgba(250,248,240,.95) 63% 65%,transparent 66%),radial-gradient(circle at 50% 50%,transparent 72%,rgba(250,248,240,.85) 73% 75%,transparent 76%)}
+.lacecard h4{font-size:38px}
+.lacecard p{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:#4d5746;margin-top:10px}
+.polaroid{background:#f4f1e8;padding:12px 12px 34px;box-shadow:3px 10px 26px rgba(48,60,38,.3);width:min(290px,40vw)}
+.polaroid img{width:100%;display:block;filter:saturate(.72) contrast(1.03)}
+.polaroid .c{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:#6a725f;text-align:center;margin-top:8px}
+.namecard{padding:20px 24px;width:min(370px,48vw)}
+.namecard h4{font-size:34px;margin-bottom:8px}
+.namecard .row{display:flex;justify-content:space-between;font-family:VT323,monospace;font-size:15px;color:#565f4e;border-bottom:1px dotted #a6ab99;padding:4px 0}
+.skillscard{padding:18px 20px;width:min(390px,50vw)}
+.skillscard h4{font-size:30px;margin-bottom:6px}
+.skillscard .items{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.skillscard .items span{border:1px solid #a6ab99;background:rgba(255,255,255,.4);padding:4px 9px;font-family:'Cormorant Garamond',serif;font-size:15px;color:#4d5746}
+.stampcard{padding:16px 18px;width:min(260px,38vw);border:2px dashed #9a9f8c}
+.stampcard .ln{font-family:VT323,monospace;font-size:14px;color:#565f4e;padding:3px 0}
+
+/* ===== 联系方式：直接用 cloud-clean.jpg，字歪着贴 ===== */
+#contact{background:#6a7a55 url('./assets/cloud-clean.jpg') center center/cover no-repeat;overflow:auto;position:fixed;inset:0}
+#contact .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,50,35,.28),rgba(40,50,35,.05) 45%,rgba(40,50,35,.34))}
+#contact .wrap{position:relative;max-width:1100px;margin:0 auto;min-height:100%;padding:3vh 24px 40px}
+#contact .topbar{display:flex;justify-content:space-between;align-items:center;font-family:VT323,monospace;font-size:15px;letter-spacing:.14em;color:rgba(255,255,235,.85)}
+#contact .back{background:rgba(255,255,240,.2);border-color:rgba(255,255,235,.7);color:#fbf7e4}
+#contact .back:hover{background:#fbf7e4;color:#4a5a3a}
+#contact .cname{position:absolute;left:24%;top:30%;transform:rotate(-8deg);font-family:'Great Vibes',cursive;font-size:clamp(3.6rem,9vw,7rem);color:#f7f0c9;text-shadow:0 2px 0 rgba(90,100,65,.5),0 0 22px rgba(255,255,230,.5),0 0 50px rgba(255,250,210,.3)}
+#contact .cmail{position:absolute;left:27%;top:48%;transform:rotate(-5deg);font-family:VT323,monospace;font-size:clamp(14px,2vw,20px);letter-spacing:.1em;color:#fbf7e4;text-decoration:none;border-bottom:1px solid rgba(251,247,228,.7);padding-bottom:4px}
+#contact .clinks{position:absolute;left:25%;top:57%;transform:rotate(-3deg);display:flex;gap:10px;flex-wrap:wrap;max-width:50%}
+#contact .clinks a{font-family:VT323,monospace;font-size:15px;border:1px solid rgba(255,255,235,.75);padding:7px 13px;color:#fbf7e4;text-decoration:none;background:rgba(255,255,240,.16)}
+#contact .cfoot{position:absolute;left:0;right:0;bottom:5%;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,235,.9)}
+
+/* 灯箱 */
+#light{position:fixed;inset:0;z-index:9500;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:rgba(26,32,28,.96);padding:20px}
+#light.on{display:flex}
+#light img,#light video{max-width:94vw;max-height:80vh;object-fit:contain;border:4px solid #f2eee8}
+#light button{background:#f2eee8;border:0;padding:8px 18px;font-family:VT323,monospace;font-size:16px;color:#232a30}
+#grain{position:fixed;inset:-50%;z-index:9000;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.035;mix-blend-mode:overlay}
+@media(max-width:760px){
+ .wlayout{grid-template-columns:1fr;overflow:auto}.wleft{padding:4vh 6vw 0;border-right:0}.wright{padding:3vh 6vw 10vh}
+ #contact .cname{left:10%;top:26%}#contact .cmail{left:11%;top:40%}#contact .clinks{left:10%;top:48%;max-width:80%}
+}
+</style>
+</head>
+<body>
+<div id="grain"></div>
+
+<!-- ========== 封面：cover-clean.jpg + 你的文字 ========== -->
+<section id="cover" class="scene on">
+  <div class="bg"></div><div class="veil"></div><canvas id="pc"></canvas>
+  <div class="ctop">ART &amp; TECHNOLOGY / DIGITAL DESIGN</div>
+  <div class="cskip">YE.HUIRU — 2026</div>
+  <div class="cmid">
+    <div class="pre">( DESIGN — PORTFOLIO )</div>
+    <div class="big vine">Portfolio</div>
+    <div class="post">( 2026 )</div>
+  </div>
+  <div class="csign">YE HUIRU</div>
+  <div class="cmail" id="coverMail"></div>
+  <nav class="nav">
+    <a href="#" data-go="about">About</a><span class="sep">✧</span>
+    <a href="#" data-go="works">Works</a><span class="sep">✧</span>
+    <a href="#" data-go="contact">Contact</a>
+  </nav>
+</section>
+
+<!-- ========== 作品：works-clean.jpg + 你的文字 ========== -->
+<section id="works" class="scene">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="inner">
+    <div class="wtop"><span>SELECTED WORKS / 01</span><button class="back" data-home>BACK TO COVER</button></div>
+    <div class="wlayout">
+      <div class="wleft">
+        <div class="title vine">Works</div>
+        <div class="hint">CHOOSE A DIRECTION</div>
+        <div class="wcats" id="wcats"></div>
+      </div>
+      <div class="wright" id="wright"><p class="placeholder">pick a word on the left<br />and the works will appear here.</p></div>
+    </div>
+    <div class="wdetail" id="wdetail">
+      <div class="dtop"><button class="back" id="dback">← BACK TO WORKS</button><span class="tiny" id="dnum"></span></div>
+      <div class="dmedia" id="dmedia"></div>
+      <div class="meta" id="dmeta"></div>
+      <h3 id="dtitle"></h3>
+      <p id="ddesc"></p>
+      <div class="nav"><button id="dprev">← previous</button><button id="dnext">next →</button><a id="dopen" href="#" target="_blank" rel="noopener">open original ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 个人介绍：信封拆开 + 可拖拽卡片 ========== -->
+<section id="about" class="scene">
+  <div class="topbar"><span>YE.HUIRU / A LITTLE ABOUT ME</span><button class="back" data-home>BACK TO COVER</button></div>
+  <div class="stage" id="stage">
+    <div class="lace" style="left:-4%;top:2%"></div>
+    <div class="lace" style="right:-3%;bottom:-6%;transform:scale(.9)"></div>
+    <div class="envelope" id="envelope">
+      <div class="envbody"></div><div class="envflap"></div>
+      <div class="envtitle"><div class="t">About me</div><div class="s">( YE HUIRU ) — CLICK TO OPEN</div></div>
+      <div class="hint">✦ 点击拆开 ✦</div>
+    </div>
+
+    <div class="drag lacecard" data-r="-8deg" style="--r:-8deg;--d:.05s;left:5%;top:12%">
+      <h4>hello :)</h4>
+      <p id="aboutText"></p>
+    </div>
+    <div class="drag polaroid" data-r="6deg" style="--r:6deg;--d:.18s;left:40%;top:7%">
+      <img src="./thumbs/lingsu.jpg" alt="拍立得" /><div class="c">a corner of my work</div>
+    </div>
+    <div class="drag namecard pcard" data-r="5deg" style="--r:5deg;--d:.3s;left:64%;top:16%">
+      <h4>YE Huiru</h4>
+      <div class="row"><span>NAME</span><span>叶荟茹</span></div>
+      <div class="row"><span>ROLE</span><span>Art &amp; Tech Student</span></div>
+      <div class="row"><span>FOCUS</span><span>Creative Coding</span></div>
+      <div class="row"><span>BASE</span><span>China</span></div>
+    </div>
+    <div class="drag skillscard pcard" data-r="-4deg" style="--r:-4deg;--d:.42s;left:54%;top:55%">
+      <h4>skills</h4>
+      <div id="skillGroups"></div>
+    </div>
+    <div class="drag stampcard pcard" data-r="7deg" style="--r:7deg;--d:.54s;left:8%;top:58%">
+      <div class="ln">EMAIL : <span id="stampMail"></span></div>
+      <div class="ln">INSTAGRAM : —</div>
+      <div class="ln">WEBSITE : this page</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 联系方式：cloud-clean.jpg + 歪斜文字 ========== -->
+<section id="contact" class="scene">
+  <div class="veil"></div>
+  <div class="wrap">
+    <div class="topbar"><span>04 / WRITE TO ME</span><button class="back" data-home>BACK TO COVER</button></div>
+    <div class="cname">Contact</div>
+    <a class="cmail" id="cloudMail" href="#"></a>
+    <div class="clinks" id="links"></div>
+    <div class="cfoot">如果你也做了一个奇怪的梦，我们聊聊</div>
+  </div>
+</section>
+
+<div id="light"><div id="lmedia"></div><button id="lclose">close ✕</button></div>
+
+<script>
+/* ============================================================
+   ✏️ 可编辑区：文字 / 分类 / 作品都在 SITE 和 CATS 里替换
+   ============================================================ */
+const T='./thumbs/', ROOT='./新建文件夹/';
+const SITE={
+  about:'我是叶荟茹，艺术与科技专业学生。我的创作围绕「技术如何成为表达媒介」展开——从 TouchDesigner 的实时生成、动态排版，到 VR 叙事与实体交互装置。',
+  groups:[
+    {n:'CREATIVE TECHNOLOGY',items:['TouchDesigner','Unity 3D','VFX Graph','HLSL Shader','Arduino','Mapbox GL JS']},
+    {n:'VISUAL LANGUAGE',items:['信息可视化','动态图形','数据叙事','视觉排版','UI 设计']},
+    {n:'TOOLS',items:['Figma','Python','Blender','After Effects','VR / XR']}
+  ],
+  email:'yehuiru@example.com',
+  links:[{l:'Behance',u:'https://www.behance.net/'},{l:'LinkedIn',u:'https://www.linkedin.com/'},{l:'小红书',u:'#'}]
+};
+const PLANE=['0AE530F334BAD3843295F94578661B60.jpg','0CE8A37D932636530C253D892706D8AA.jpg','21147EF8392266146777E51D1EF394EB.jpg','5ECADAA0B93A469D1E25A7FC7411635A.jpg','DFCA6189DE1C7D2807D336EA27DF3465.jpg','微信图片_20241117141150.jpg','微信图片_20241117141159.jpg','微信图片_20241117141230.jpg','微信图片_20241117141238.jpg','微信图片_20241117141259.jpg','微信图片_20241117141313.jpg','微信图片_20241117141326.jpg','微信图片_20241117141340.jpg','微信图片_20241117141348.jpg','微信图片_20241117142612.jpg','微信图片_20241117142629.jpg'];
+const CATS=[
+  {id:'film',n:'Film',cn:'影像 / 全部视频',items:[
+    {t:'动态海报 01',img:'td1.jpg',full:ROOT+'TD/动态海报1.mp4',video:ROOT+'TD/动态海报1.mp4',d:'TouchDesigner 实时生成的动态海报系列。'},
+    {t:'动态海报 02',img:'td2.jpg',full:ROOT+'TD/动态海报2.mp4',video:ROOT+'TD/动态海报2.mp4',d:'TouchDesigner 实时生成的动态海报系列。'},
+    {t:'动态海报 03',img:'td3.jpg',full:ROOT+'TD/动态海报3.mp4',video:ROOT+'TD/动态海报3.mp4',d:'TouchDesigner 实时生成的动态海报系列。'},
+    {t:'TD 演示',img:'boying.jpg',full:ROOT+'TD/视频.mp4',video:ROOT+'TD/视频.mp4',d:'实时视觉系统演示。'},
+    {t:'VR 片段',img:'vr.jpg',full:ROOT+'VR/1.mp4',video:ROOT+'VR/1.mp4',d:'沉浸式叙事原型片段。'},
+    {t:'装置展示',img:'hardware.jpg',full:ROOT+'硬件编程装置/展示.mp4',video:ROOT+'硬件编程装置/展示.mp4',d:'交互装置现场记录。'},
+    {t:'Unity 3D 特效',img:'td3.jpg',full:ROOT+'U3D.mp4',video:ROOT+'U3D.mp4',d:'GPU 粒子与着色器的实时特效研究。'}
+  ]},
+  {id:'visual',n:'Visual',cn:'视觉与排版',items:[
+    {t:'灵素味鉴',img:'lingsu.jpg',full:ROOT+'Untitled.png',d:'把《黄帝内经》里抽象的五行五味关系，转译成可阅读的多维信息图。'},
+    {t:'天青迷案 I',img:'tq1.jpg',full:ROOT+'《天青迷案》——数字实境剧本游/实践考察1.png',d:'古镇实景剧本游的调研与视觉线索。'},
+    {t:'天青迷案 II',img:'tq2.jpg',full:ROOT+'《天青迷案》——数字实境剧本游/实践考察_2.png',d:'角色、场景与 UI 界面构成的叙事世界。'}
+  ]},
+  {id:'motion',n:'Motion',cn:'TD 动态',items:[
+    {t:'波影 · 展板',img:'boying.jpg',full:ROOT+'TD/boying展板.png',d:'城市噪音可视化：把不可见的声场变成会呼吸的波纹。'},
+    {t:'动态海报 01',img:'td1.jpg',full:ROOT+'TD/动态海报1.mp4',video:ROOT+'TD/动态海报1.mp4',d:'实时生成的动态海报系列。'},
+    {t:'动态海报 02',img:'td2.jpg',full:ROOT+'TD/动态海报2.mp4',video:ROOT+'TD/动态海报2.mp4',d:'实时生成的动态海报系列。'},
+    {t:'动态海报 03',img:'td3.jpg',full:ROOT+'TD/动态海报3.mp4',video:ROOT+'TD/动态海报3.mp4',d:'实时生成的动态海报系列。'},
+    {t:'文字模板',img:'tdtext.jpg',full:ROOT+'TD/工程文件/Image/文字模板.png',d:'TouchDesigner 工程中的文字模块。'},
+    {t:'TD 演示',img:'boying.jpg',full:ROOT+'TD/视频.mp4',video:ROOT+'TD/视频.mp4',d:'实时视觉系统演示。'}
+  ]},
+  {id:'dream',n:'Dream',cn:'VR 沉浸',items:[
+    {t:'无声无证言',img:'vr.jpg',full:ROOT+'VR/展板.png',d:'一个可以走进去的记忆空间，用位置触发叙事碎片。'},
+    {t:'VR 片段',img:'vr.jpg',full:ROOT+'VR/1.mp4',video:ROOT+'VR/1.mp4',d:'沉浸式叙事原型片段。'}
+  ]},
+  {id:'object',n:'Object',cn:'硬件交互',items:[
+    {t:'窒息之肺',img:'hardware.jpg',full:ROOT+'硬件编程装置/展板.png',d:'由 LED、温湿度传感器与雾化模块构成的交互装置。'},
+    {t:'装置展示',img:'hardware.jpg',full:ROOT+'硬件编程装置/展示.mp4',video:ROOT+'硬件编程装置/展示.mp4',d:'装置现场记录。'}
+  ]},
+  {id:'particle',n:'Particle',cn:'Unity 3D',items:[
+    {t:'Unity 3D 特效',img:'td3.jpg',full:ROOT+'U3D.mp4',video:ROOT+'U3D.mp4',d:'GPU 粒子与着色器的实时特效研究。'}
+  ]},
+  {id:'map',n:'Map',cn:'空间信息',items:[
+    {t:'禅意巡礼',img:'zen.jpg',full:ROOT+'空间信息运用/叶荟茹2024001128程珂2024001126.png',d:'基于 Mapbox GL JS 的浙江古刹数字地图。'}
+  ]},
+  {id:'paper',n:'Paper',cn:'平面构成',items:PLANE.map((f,i)=>({t:'平面基础构成 '+String(i+1).padStart(2,'0'),img:'plane'+(i+1)+'.jpg',full:ROOT+'平面基础构成/'+f,d:'关于点线面、网格与视觉节奏的基础练习。'}))}
+];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let curCat=null,curIdx=0;
+
+/* 场景 */
+function go(id){$$('.scene').forEach(s=>s.classList.toggle('on',s.id===id))}
+$$('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.go)}));
+$$('[data-home]').forEach(b=>b.addEventListener('click',()=>go('cover')));
+
+/* 内容 */
+$('#aboutText').textContent=SITE.about;
+$('#skillGroups').innerHTML=SITE.groups.map(g=>`<div class="sgroup" style="margin-top:8px"><div style="font-family:VT323,monospace;font-size:13px;letter-spacing:.12em;color:#7a8b81">${esc(g.n)}</div><div class="items">${g.items.map(i=>`<span>${esc(i)}</span>`).join('')}</div></div>`).join('');
+$('#coverMail').textContent=SITE.email;$('#stampMail').textContent=SITE.email;
+const cm=$('#cloudMail');cm.textContent=SITE.email;cm.href='mailto:'+SITE.email;
+$('#links').innerHTML=SITE.links.map(l=>`<a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(l.l)}</a>`).join('');
+
+/* 作品分类 */
+$('#wcats').innerHTML=CATS.map(c=>`<button data-c="${c.id}">${esc(c.n)}</button>`).join('');
+$$('#wcats button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#wcats button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  curCat=CATS.find(c=>c.id===b.dataset.c);
+  $('#wright').innerHTML=`<div class="stack">${curCat.items.map((w,i)=>`<div class="card" data-i="${i}"><img src="${T}${esc(w.img)}" alt="${esc(w.t)}" loading="lazy">${w.video?'<div class="vbadge"><i></i> VIDEO</div>':''}<div class="cap">${esc(w.t)}</div></div>`).join('')}</div>`;
+  $$('#wright .card').forEach(c=>c.addEventListener('click',()=>showWork(+c.dataset.i)));
+}));
+function showWork(i){
+  if(!curCat)return;
+  curIdx=(i+curCat.items.length)%curCat.items.length;
+  const w=curCat.items[curIdx];
+  $('#dnum').textContent=String(curIdx+1).padStart(2,'0')+' / '+String(curCat.items.length).padStart(2,'0');
+  $('#dmedia').innerHTML=w.video?`<video src="${esc(w.video)}" poster="${T}${esc(w.img)}" controls preload="none"></video>`:`<img src="${T}${esc(w.img)}" alt="${esc(w.t)}">`;
+  $('#dmeta').textContent=curCat.cn.toUpperCase()+' / '+curCat.n;
+  $('#dtitle').textContent=w.t;$('#ddesc').textContent=w.d;
+  $('#dopen').href=w.full;
+  $('#wdetail').classList.add('on');
+}
+$('#dback').addEventListener('click',()=>$('#wdetail').classList.remove('on'));
+$('#dprev').addEventListener('click',()=>showWork(curIdx-1));
+$('#dnext').addEventListener('click',()=>showWork(curIdx+1));
+$('#dmedia').addEventListener('click',e=>{if(e.target.tagName==='IMG'){$('#lmedia').innerHTML=`<img src="${esc(e.target.src)}" alt="">`;$('#light').classList.add('on')}});
+$('#lclose').addEventListener('click',()=>{$('#light').classList.remove('on');$('#lmedia').innerHTML=''});
+$('#light').addEventListener('click',e=>{if(e.target.id==='light')$('#lclose').click()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){$('#light').classList.remove('on');$('#wdetail').classList.remove('on')}
+  if($('#wdetail').classList.contains('on')){if(e.key==='ArrowLeft')showWork(curIdx-1);if(e.key==='ArrowRight')showWork(curIdx+1)}
+});
+
+/* 个人介绍：点击信封拆开 */
+$('#envelope').addEventListener('click',()=>$('#stage').classList.add('open'));
+
+/* 卡片拖拽（鼠标 + 触摸）：直接改 left/top，可拖到任意位置，点击置顶 */
+let zTop=40;
+$$('#stage .drag').forEach(el=>{
+  let sx=0,sy=0,bx=0,by=0,dragging=false;
+  const start=(x,y)=>{
+    if(!$('#stage').classList.contains('open'))return;
+    dragging=true;sx=x;sy=y;bx=el.offsetLeft;by=el.offsetTop;
+    el.style.animation='none';el.style.left=bx+'px';el.style.top=by+'px';
+    el.classList.add('dragging');el.style.zIndex=++zTop;
+  };
+  const move=(x,y)=>{if(!dragging)return;el.style.left=(bx+x-sx)+'px';el.style.top=(by+y-sy)+'px'};
+  const end=()=>{dragging=false;el.classList.remove('dragging')};
+  el.addEventListener('mousedown',e=>{e.preventDefault();start(e.clientX,e.clientY)});
+  window.addEventListener('mousemove',e=>move(e.clientX,e.clientY));
+  window.addEventListener('mouseup',end);
+  el.addEventListener('touchstart',e=>{e.preventDefault();start(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+  window.addEventListener('touchmove',e=>{if(dragging)move(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+  window.addEventListener('touchend',end);
+});
+
+/* 封面粒子：鼠标经过散开 / 躁动，离开后缓慢回归；切走时暂停绘制 */
+(function(){
+  const cv=$('#pc');if(!cv)return;
+  const ctx=cv.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);
+  let W=0,H=0,ps=[],trail=[],mx=-9999,my=-9999,pmx=-9999,pmy=-9999;
+  function resize(){
+    W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+    cv.style.width=W+'px';cv.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+    ps=[];const n=Math.min(560,Math.max(260,Math.floor(W*H/2400)));
+    for(let i=0;i<n;i++){const x=Math.random()*W,y=Math.random()*H;ps.push({x,y,ox:x,oy:y,vx:0,vy:0,r:Math.random()*1.1+.35,a:Math.random()*.26+.08,ph:Math.random()*6.28})}
+  }
+  function tick(){
+    requestAnimationFrame(tick);
+    if(!$('#cover').classList.contains('on'))return;
+    ctx.clearRect(0,0,W,H);
+    for(const p of ps){
+      const dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+      if(d2<26000&&d2>.01){const d=Math.sqrt(d2),f=(1-d/162)*3.1;p.vx+=dx/d*f;p.vy+=dy/d*f}
+      p.vx+=(p.ox-p.x)*.014;p.vy+=(p.oy-p.y)*.014;
+      p.vx*=.9;p.vy*=.9;p.x+=p.vx;p.y+=p.vy;
+      const tw=.7+.3*Math.sin(Date.now()*.001+p.ph);
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);
+      ctx.fillStyle='rgba(245,242,232,'+(p.a*tw).toFixed(3)+')';ctx.fill();
+    }
+    if(pmx>-9999){
+      const dist=Math.hypot(mx-pmx,my-pmy),steps=Math.max(1,Math.floor(dist/6));
+      for(let i=0;i<steps;i++){
+        const t=i/steps,x=pmx+(mx-pmx)*t,y=pmy+(my-pmy)*t;
+        if(trail.length<900)trail.push({x,y,vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4,life:1,r:Math.random()*2.2+.8});
+      }
+    }
+    ctx.globalCompositeOperation='lighter';
+    for(let i=trail.length-1;i>=0;i--){
+      const t=trail[i];t.x+=t.vx;t.y+=t.vy;t.vx*=.94;t.vy*=.94;t.life-=.035;
+      if(t.life<=0){trail.splice(i,1);continue}
+      ctx.beginPath();ctx.arc(t.x,t.y,t.r*t.life,0,6.283);
+      ctx.fillStyle='rgba(255,251,240,'+(t.life*.5).toFixed(3)+')';ctx.fill();
+    }
+    ctx.globalCompositeOperation='source-over';
+    pmx=mx;pmy=my;
+  }
+  addEventListener('resize',resize);
+  $('#cover').addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  $('#cover').addEventListener('mouseleave',()=>{mx=-9999;my=-9999;pmx=-9999;pmy=-9999});
+  resize();tick();
+})();
+</script>
+</body>
+</html>
